@@ -34,3 +34,19 @@ Adımlar:
 **n:** iş sayısı  
 **m:** makine sayısı
 
+---
+## 📋 Örnek Girdi
+
+```java
+int[][] islemSuresi = {
+    {9, 2, 7},
+    {6, 4, 3},
+    {5, 8, 1},
+    {7, 6, 9}
+};
+
+int[][] gecisMaliyeti = {
+    {0, 3, 2},
+    {3, 0, 1},
+    {2, 1, 0}
+};
