@@ -1,38 +1,36 @@
-# Üretim Planlama - Dinamik Programlama Yaklaşımı
-
-Bu proje, üretim hattında sırayla yapılması gereken işleri farklı makinelerde minimum toplam süre ile gerçekleştirmek için **dinamik programlama** yaklaşımını kullanır.
-
----
+# 🏭 Dinamik Programlama ile Üretim Planlama
 
 ## 📌 Problem Tanımı
 
-Bir üretim hattında **n adet iş** (örneğin, bir ürünün parçalarının işlenmesi) sırayla tamamlanmalıdır. Bu işler **m farklı makinede** yapılabilir. Her işin her makinedeki tamamlanma süresi farklıdır. Ayrıca, işler makineler arasında aktarılırken **geçiş maliyeti** (örneğin, ayar süresi veya taşıma süresi) oluşur.
+Bir üretim hattında `n` adet iş sırayla tamamlanmalıdır. Her iş, `m` farklı makinede yapılabilir ve her makinede işlem süresi farklıdır. Ayrıca, makineler arasında geçiş yapılması durumunda belirli bir geçiş maliyeti (örneğin taşıma süresi veya ayar süresi) oluşur.
 
-Amaç: Tüm işleri sırayla tamamlamak için **minimum toplam süreyi** bulmaktır.
+**Amaç:** Tüm işleri sırasıyla minimum toplam sürede tamamlayacak şekilde makine seçimi yapmaktır.
 
----
-
-## 🧠 Çözüm Yöntemi
-
-Bu problem, **matris zinciri çarpımı** problemine benzer şekilde ele alınarak dinamik programlama ile çözülür.
-
-- `islemSuresi[i][j]` → i. işin j. makinede yapılma süresi
-- `gecisMaliyeti[k][j]` → k. makinadan j. makineye geçişin maliyeti
+Toplam süre:  
+📦 İşlem Süreleri + 🔁 Geçiş Maliyetleri
 
 ---
 
-## 📋 Örnek Girdi
+## 🧠 Kullanılan Yöntem: Dinamik Programlama
 
-```java
-int[][] islemSuresi = {
-    {9, 2, 7},
-    {6, 4, 3},
-    {5, 8, 1},
-    {7, 6, 9}
-};
+Bu problem, her iş ve makine kombinasyonu için en düşük maliyetli yolu seçerek çözülür.  
+Her işin her makinede yapılması durumunda oluşan toplam maliyet, dinamik programlama yaklaşımıyla bir tabloya işlenir.
 
-int[][] gecisMaliyeti = {
-    {0, 3, 2},
-    {3, 0, 1},
-    {2, 1, 0}
-};
+Adımlar:
+1. İlk iş için her makinedeki işlem süresi başlangıç değeri olarak alınır.
+2. Her sonraki iş için, önceki işteki tüm makinelerden geçiş maliyeti + o makinedeki süre hesaplanır.
+3. En düşük toplam maliyet değeri seçilir ve son iş tamamlandığında en küçük değer çıktı olarak alınır.
+
+---
+
+
+## 🧮 Zaman ve Bellek Karmaşıklığı
+
+| Parametre     | Karmaşıklık        |
+|---------------|--------------------|
+| ⏱ Zaman      | O(n × m²)          |
+| 🧠 Bellek    | O(n × m)           |
+
+**n:** iş sayısı  
+**m:** makine sayısı
+
